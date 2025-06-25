@@ -8,23 +8,24 @@ const bartlett = (arr, options = {}) => {
 	} = options
 
 	const M = Math.floor(N / k)
-	const P = Math.floor(M / 2)
-	const result = new Array(P).fill(0)
 
 	let start = 0
 	let end = M
-	for (let i = 0; i < k; i++) {
-		const { periodogram: part } = periodogram(arr.slice(start, end))
+	const { powers: result, frequencyStep } = periodogram(arr.slice(start, end))
+	const P = result.length
+
+	for (let i = 1; i < k; i++) {
 		start = end
 		end += M
-		for (let j = 0; j < P; j++) { result[j] += part[j] }
+		const { powers } = periodogram(arr.slice(start, end))
+		for (let j = 0; j < P; j++) { result[j] += powers[j] }
 	}
 
 	for (let j = 0; j < P; j++) { result[j] /= k }
 
 	return {
-		periodogram: result,
-		frequencyStep: 1 / M,
+		powers: result,
+		frequencyStep,
 	}
 }
 
