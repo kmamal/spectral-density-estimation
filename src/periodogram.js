@@ -16,7 +16,7 @@ const periodogram = (_arr) => {
 		: _arr
 
 	const fft = fftReal(arr)
-	fft.length = Math.floor(originalN / 2)
+	fft.length = Math.floor(powerOfTwoN / 2)
 	magnitudeSquared$$$(fft)
 	map$$$(fft, (x) => x / originalN)
 

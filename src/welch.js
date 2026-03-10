@@ -13,7 +13,7 @@ const welch = (arr, options = {}) => {
 	const S = M - D
 
 	const hanningWindow = new Array(M)
-	const f = M - 1 / Math.PI
+	const f = (M - 1) / Math.PI
 	for (let m = 0; m < M; m++) {
 		hanningWindow[m] = Math.sin(m / f) ** 2
 	}
@@ -23,7 +23,7 @@ const welch = (arr, options = {}) => {
 
 	let slice = arr.slice(start, end)
 	for (let m = 0; m < M; m++) { slice[m] *= hanningWindow[m] }
-	const { powers: result, frequencyStep } = periodogram(arr.slice(start, end))
+	const { powers: result, frequencyStep } = periodogram(slice)
 	const P = result.length
 
 	for (let i = 1; i < k; i++) {

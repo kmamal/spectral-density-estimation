@@ -16,13 +16,12 @@
     "./periodogram": "./src/periodogram.js",
     "./welch": "./src/welch.js"
   },
-  "main": "./src/index.js",
-  "devDependencies": {
-    "@kmamal/testing": "^0.0.31"
-  },
   "dependencies": {
     "@kmamal/fft": "^0.0.2",
     "@kmamal/numbers": "^0.0.12",
     "@kmamal/util": "^0.2.29"
+  },
+  "devDependencies": {
+    "@kmamal/testing": "^0.0.31"
   }
 }
